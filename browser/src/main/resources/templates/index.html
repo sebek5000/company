@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Browser</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <script src="/getByName2.js"></script>
+    <script src="/getBySurname.js"></script>
+    <script src="/getByPosition.js"></script>
+    <script src="/dropdownInit.js"></script>
+    <script src="/addEmployee.js"></script>
+    <script src="/addTeam.js"></script>
+</head>
+<body>
+<div>
+
+    <form id="browserForm">
+        <div class="form-group">
+            <label for="browser">Input</label>
+            <input type="text" class="form-control" id="browser" placeholder="Enter search text" name="browser">
+        </div>
+
+        <button id="getEmployeeByName" class="btn btn-primary">Search by name</button>
+        <button id="getEmployeeBySurname" class="btn btn-primary">Search by surname</button>
+        <button id="getEmployeeByPosition" class="btn btn-primary">Search by position</button>
+    </form>
+
+    <div id="tableWithResults"/>
+
+
+</div>
+
+<div>
+    <form id="newEmployeeForm">
+        <div class="form-group">
+            <label for="employeeName">Name</label>
+            <input type="text" class="form-control" id="employeeName" >
+        </div>
+        <div class="form-group">
+            <label for="employeeSurname">Surname</label>
+            <input type="text" class="form-control" id="employeeSurname" >
+        </div>
+        <div class="form-group">
+            <label for="employeeSalary">Salary</label>
+            <input type="text" class="form-control" id="employeeSalary" >
+        </div>
+        <select id="bossSelector">
+        </select>
+        <select id="positionSelector">
+        </select>
+        <select id="teamSelector" multiple>
+        </select>
+
+        <button id="addEmployee" class="btn btn-primary">Add Employee</button>
+    </form>
+</div>
+
+<div >
+    <form id="newTeamForm">
+        <div class="form-group">
+            <label for="teamName">Name</label>
+            <input type="text" class="form-control" id="teamName" >
+        </div>
+        <div class="form-group">
+            <label for="teamProject">Project</label>
+            <input type="text" class="form-control" id="teamProject" >
+        </div>
+        <select id="poSelector">
+        </select>
+        <select id="pmSelector">
+        </select>
+        <select id="scrumMasterSelector">
+        </select>
+
+        <button id="addTeam" class="btn btn-primary">Add Team</button>
+    </form>
+</div>
+
+<div id="modalWindow"></div>
+
+</body>
+</html>
