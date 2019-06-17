@@ -4,7 +4,7 @@
     function() {
 
         // GET REQUEST
-        $("#getEmployeeBySurname").click(function(event) {
+        $("#getEmployeeByPosition").click(function(event) {
             event.preventDefault();
             ajaxGet();
         });
@@ -16,22 +16,28 @@
 
             $.ajax({
                 type : "GET",
-                url : "employee/surname/"+ nameFromBrowser,
+                url : "employee/position/"+ nameFromBrowser,
                 success : function(result) {
                     
                     if (result) {
                         var $table = $('<table>');
-                      
+                        var buttonsIds = [];
                         $.each(result,
                             function(i, employee) {
-                                $table.append( '<tr><td>' + employee.employeeId + ' ' + employee.surname + ' ' + employee.position + '</td></tr>' );
-                                
-                            });
-
-
-                        //console.log("Success: ", result);                 
+                                var id = employee.employeeId;
+                                $table.append( '<tr><td>' + employee.employeeId + ' '+employee.name + ' ' + employee.surname + ' '+ employee.bossId + ' ' + employee.salary + ' ' + employee.position+' '+ competencesFromPosition[employee.position]  +'</td></tr>' );
+                                $table.append('<button id="'+ id + '">Click</button>');
+                               buttonsIds.push(id);
+                        });
+               
                         $table.append('</table>')
                     $('#tableWithResults').html($table);
+                    $.each(buttonsIds, function(i, elem){
+                        $('#'+elem).dblclick(function(){
+                            getTeam(elem);
+                         });
+                    });
+                    
                     } else {
                         $("#getResultDiv").html("<strong>Error</strong>");
                         console.log("Fail: ", result);

@@ -1,3 +1,6 @@
+var competencesFromPosition;
+
+
 $( document ).ready(function() {
     console.log( "Start" );
 
@@ -37,7 +40,6 @@ $( document ).ready(function() {
                        
                         $('#positionSelector')
                         .append( '<option value=' + i + '> '  + position + '</option>' );
-                        
                     });
 
             } else {
@@ -120,7 +122,24 @@ $( document ).ready(function() {
         }
     });
 
-    console.log("Jestem 2x TU!!!")
+    $.ajax({
+        type : "GET",
+        url : "employee/competences",
+        success : function(result) {
+            
+            if (result) {
+                          
+                competencesFromPosition = result;
+
+            } else {
+                console.log("Fail: ", result);
+            }
+        },
+        error : function(e) {
+            console.log("ERROR: ", e);
+        }
+    });
+
     $('div#modalWindow').dialog({ autoOpen: false });
   
 

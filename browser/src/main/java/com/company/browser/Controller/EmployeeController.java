@@ -7,6 +7,9 @@ import com.company.browser.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping(path="/employee")
 public class EmployeeController {
@@ -51,13 +54,13 @@ public class EmployeeController {
         return employeeRepository.findAll();
     }
 
-    @GetMapping(path="competences/{position}")
-    public @ResponseBody String getCompetences(@PathVariable String position){
-        String competences ="";
+    @GetMapping(path="competences")
+    public @ResponseBody
+    Map<String, String> getCompetences(){
+        Map<String, String> map = new HashMap<>();
         for(Position elem : Position.values()){
-            if(elem.name().equals(position))
-                competences = elem.competence();
+            map.put(elem.name(), elem.competence());
         }
-        return competences;
+        return map;
     }
 }

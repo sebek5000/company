@@ -8,18 +8,36 @@ import java.util.Set;
 @Entity
 public class Employee {
 
-    @Column
+    @Column(nullable=false)
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
-    private int employeeId;
+    private Integer employeeId;
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    @Column
+
+    @Column(nullable=false)
     private String name;
 
-    public int getEmployeeId() {
+    @Column(nullable=false)
+    private String surname;
+
+    @Column(nullable=false)
+    private Position position;
+
+    @Column(nullable=false)
+    private Double salary;
+
+    @Column
+    private Integer bossId;
+
+
+    @ManyToMany(cascade=CascadeType.MERGE)
+    @JoinTable(
+            name = "team_employee",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "team_id"))
+    private Set<Team> teams = new HashSet();
+
+    public Integer getEmployeeId() {
         return employeeId;
     }
 
@@ -29,6 +47,10 @@ public class Employee {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSurname() {
@@ -47,8 +69,7 @@ public class Employee {
         this.position = position;
     }
 
-
-    public double getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
@@ -56,7 +77,7 @@ public class Employee {
         this.salary = salary;
     }
 
-    public int getBossId() {
+    public Integer getBossId() {
         return bossId;
     }
 
@@ -71,25 +92,4 @@ public class Employee {
     public void setTeams(Set<Team> teams) {
         this.teams = teams;
     }
-
-    @Column
-    private String surname;
-
-    @Column
-    private Position position;
-
-    @Column
-    private double salary;
-
-
-    @Column
-    private int bossId;
-
-
-    @ManyToMany(cascade=CascadeType.MERGE)
-    @JoinTable(
-            name = "team_employee",
-            joinColumns = @JoinColumn(name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "team_id"))
-    private Set<Team> teams = new HashSet();
 }

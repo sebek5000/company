@@ -1,22 +1,39 @@
 package com.company.browser.Entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 
 @Entity
 public class Team {
 
-    @Column
+    @Column(nullable=false)
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private int teamId;
+    private Integer teamId;
 
     @Column
     private String name;
 
-    public int getTeamId() {
+    @Column(nullable=false)
+    private String project;
+
+
+    @Column(nullable=false)
+    private Integer POId;
+
+    @Column(nullable=false)
+    private Integer PMId;
+
+    @Column(nullable=false)
+    private Integer scrumMasterId;
+
+    public Team(String id){
+        setTeamId(Integer.parseInt(id));
+    }
+
+    public Team(){}
+
+    public Integer getTeamId() {
         return teamId;
     }
 
@@ -40,7 +57,7 @@ public class Team {
         this.project = project;
     }
 
-    public int getPOId() {
+    public Integer getPOId() {
         return POId;
     }
 
@@ -48,7 +65,7 @@ public class Team {
         this.POId = POId;
     }
 
-    public int getPMId() {
+    public Integer getPMId() {
         return PMId;
     }
 
@@ -56,32 +73,12 @@ public class Team {
         this.PMId = PMId;
     }
 
-    public int getScrumMasterId() {
+    public Integer getScrumMasterId() {
         return scrumMasterId;
     }
 
     public void setScrumMasterId(int scrumMasterId) {
         this.scrumMasterId = scrumMasterId;
     }
-
-
-    @Column
-    private String project;
-
-    public Team() {
-    }
-
-    public Team(String id){
-        setTeamId(Integer.parseInt(id));
-    }
-
-    @Column
-    private int POId;
-
-    @Column
-    private int PMId;
-
-    @Column
-    private int scrumMasterId;
 
 }

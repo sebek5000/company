@@ -1,6 +1,5 @@
 package com.company.browser.Repository;
 
-import com.company.browser.Entity.Employee;
 import com.company.browser.Entity.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
