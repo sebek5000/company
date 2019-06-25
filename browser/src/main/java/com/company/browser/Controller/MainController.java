@@ -12,4 +12,14 @@ public class MainController {
     public String mainWindow(Model model){
         return "index";
     }
+
+    @RequestMapping(path={"/addEmployee"}, method= RequestMethod.GET)
+    public String addEmployeeWindow(Model model){
+        return "addEmployee";
+    }
+
+    @RequestMapping(path={"/addTeam"}, method= RequestMethod.GET)
+    public String addTeamWindow(Model model){
+        return "addTeam";
+    }
 }

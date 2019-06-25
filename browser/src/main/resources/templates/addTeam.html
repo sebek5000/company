@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Browser</title>
+    <title>Add Employee</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
@@ -15,31 +15,25 @@
 </head>
 <body>
 <div>
-
-    <form id="browserForm">
+    <form id="newTeamForm">
         <div class="form-group">
-            <label for="browser">Input</label>
-            <input type="text" class="form-control" id="browser" placeholder="Enter search text" name="browser">
+            <label for="teamName">Name</label>
+            <input type="text" class="form-control" id="teamName" >
         </div>
+        <div class="form-group">
+            <label for="teamProject">Project</label>
+            <input type="text" class="form-control" id="teamProject" >
+        </div>
+        <select id="poSelector">
+        </select>
+        <select id="pmSelector">
+        </select>
+        <select id="scrumMasterSelector">
+        </select>
 
-        <button id="getEmployee" class="btn btn-primary">Search</button>
+        <button id="addTeam" class="btn btn-primary">Add Team</button>
     </form>
 
-    <a href="/addEmployee">Add New Employee</a>
-    <a href="/addTeam">Add New Team</a>
-
-    <div id="tableWithResults"/>
-
-
-</div>
-<div id="modalWindow"></div>
-
-<div>
-
-
-</div>
-
-<div >
 
 </div>
 </body>

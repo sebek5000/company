@@ -36,7 +36,7 @@
                 success : function(result) {
                     
                     if (result) {
-                       
+                        window.location = '/';
                     } else {
     
                         console.log("Fail: ", result);

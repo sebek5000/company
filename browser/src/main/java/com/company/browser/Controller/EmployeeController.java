@@ -5,8 +5,13 @@ import com.company.browser.Entity.Employee;
 import com.company.browser.Entity.Position;
 import com.company.browser.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.context.Context;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,21 +22,16 @@ public class EmployeeController {
     private EmployeeRepository employeeRepository;
 
     @PostMapping(path="/add", consumes = "application/json", produces = "application/json")
-    public Employee addNewEmployee (@RequestBody Employee employee) {
+    public Employee addNewEmployee (@Valid @RequestBody  @ModelAttribute("employee") Employee employee,
+                                    HttpServletRequest request, BindingResult bindingResult, Model model) {
+       model.addAttribute("employee", employee);
+
+        Context templateContext = new Context();
+        templateContext.setVariable("employee", employee);
         if(employee.getSalary()<0)
             throw new BadSalaryValueException();
         employeeRepository.save(employee);
         return employee;
-    }
-
-    @GetMapping(path="/name/{name}")
-    public @ResponseBody Iterable<Employee> getEmployeeByName(@PathVariable String name) {
-        return employeeRepository.findEmployeeByName(name);
-    }
-
-    @GetMapping(path="/surname/{surname}")
-    public @ResponseBody Iterable<Employee> getEmployeeBySurname(@PathVariable String surname) {
-        return employeeRepository.findEmployeeBySurname(surname);
     }
 
     @GetMapping(path="/position/{position}")
@@ -39,9 +39,22 @@ public class EmployeeController {
         int numberPosition =-1;
         for(Position elem : Position.values()){
             if(elem.name().equals(position))
-                numberPosition = elem.ordinal();
+                 numberPosition = elem.ordinal();
         }
         return employeeRepository.findEmployeeByPosition(Integer.toString(numberPosition));
+    }
+
+
+        @GetMapping(path="/text/{text}")
+    public @ResponseBody Iterable<Employee> getEmployee(@PathVariable String text) {
+        int numberPosition;
+        for(Position elem : Position.values()){
+            if(elem.name().equals(text)) {
+                numberPosition = elem.ordinal();
+                return employeeRepository.findEmployeeByPosition(Integer.toString(numberPosition));
+            }
+        }
+        return employeeRepository.findEmployee(text);
     }
 
     @GetMapping(path="/positions")
@@ -50,7 +63,6 @@ public class EmployeeController {
     }
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Employee> getAllEmployees() {
-        // This returns a JSON or XML with the users
         return employeeRepository.findAll();
     }
 

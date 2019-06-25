@@ -2,27 +2,33 @@ package com.company.browser.Entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 public class Employee {
 
+
     @Column(nullable=false)
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Integer employeeId;
 
-
+    @NotEmpty
     @Column(nullable=false)
     private String name;
 
+    @NotEmpty
     @Column(nullable=false)
     private String surname;
 
     @Column(nullable=false)
     private Position position;
 
+
+    @Min(0)
     @Column(nullable=false)
     private Double salary;
 

@@ -21,7 +21,19 @@
             selectedTeams.each(function(){
                 teams.push($(this).val());
             });
-
+            console.log("Salary: " + salary);
+            if(salary===""){
+                throw error("The salary can't be blank.");
+            }
+            if(boss==="-1"){
+                var employee = {
+                    name: name,
+                    surname: surname,
+                    salary: salary,
+                    position: position,
+                    teams: teams
+                }
+            } else {
             var employee = {
                 name: name,
                 surname: surname,
@@ -30,8 +42,8 @@
                 position: position,
                 teams: teams
             }
-            console.log("Pracownik")
-            console.log(employee)
+            }
+
             $.ajax({
                 type : "POST",
                 contentType : "application/json",
@@ -41,7 +53,7 @@
                 success : function(result) {
                     
                     if (result) {
-                       
+                        window.location = '/';
                     } else {
 
                         console.log("Fail: ", result);

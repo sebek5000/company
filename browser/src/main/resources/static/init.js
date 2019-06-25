@@ -8,8 +8,7 @@ $( document ).ready(function() {
         type : "GET",
         url : "employee/position/PM",
         success : function(result) {
-            console.log("Konbanwa")
-            $('#bossSelector').append('<option value=null>No Boss</option>'); 
+            $('#bossSelector').append('<option value=-1>No Boss</option>'); 
             if (result) {
                               
                 $.each(result,

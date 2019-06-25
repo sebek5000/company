@@ -9,11 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
-    @Query(value="SELECT * FROM company_project.employee WHERE name=:name ;", nativeQuery = true)
-    Iterable<Employee> findEmployeeByName(@Param("name") String name);
-
-    @Query(value="SELECT * FROM company_project.employee WHERE surname=:surname ;", nativeQuery = true)
-    Iterable<Employee> findEmployeeBySurname(@Param("surname") String surname);
+    @Query(value="SELECT * FROM company_project.employee WHERE name=:text OR surname=:text ;", nativeQuery = true)
+    Iterable<Employee> findEmployee(@Param("text") String text);
 
     @Query(value="SELECT * FROM company_project.employee WHERE position=:position ;", nativeQuery = true)
     Iterable<Employee> findEmployeeByPosition(@Param("position") String position);

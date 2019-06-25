@@ -1,6 +1,7 @@
 package com.company.browser.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 
 @Entity
@@ -11,18 +12,20 @@ public class Team {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer teamId;
 
-    @Column
+    @NotEmpty
+    @Column(nullable=false)
     private String name;
 
+    @NotEmpty
     @Column(nullable=false)
     private String project;
-
 
     @Column(nullable=false)
     private Integer POId;
 
     @Column(nullable=false)
     private Integer PMId;
+
 
     @Column(nullable=false)
     private Integer scrumMasterId;

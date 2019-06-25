@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/init.js"></script>
+    <script src="/getEmployees.js"></script>
+    <script src="/addEmployee4.js"></script>
+    <script src="/addTeam2.js"></script>
+</head>
+<body>
+<div>
+
+    <!--<form action="#" th:action="@{/employee/add}" th:object="${employee}" method="post">-->
+        <!--<table>-->
+            <!--<tr>-->
+                <!--<td>Name:</td>-->
+                <!--<td><input type="text" th:field="*{name}" /></td>-->
+                <!--<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Surname:</td>-->
+                <!--<td><input type="text" th:field="*{surname}" /></td>-->
+                <!--<td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname Error</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Salary:</td>-->
+                <!--<td><input type="text" th:field="*{salary}" /></td>-->
+                <!--<td th:if="${#fields.hasErrors('salary')}" th:errors="*{surname}">Salary Error</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Boss:</td>-->
+                <!--<td>-->
+                    <!--<select id="bossSelector" th:field="*{boss_id}" />-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--<tr><td>Position:</td>-->
+                <!--<td>-->
+                    <!--<select id="positionSelector" th:field="*{position}">-->
+                    <!--</select>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Teams:</td>-->
+                <!--<td>-->
+                    <!--<select id="teamSelector" multiple th:field="*{teams}">-->
+                    <!--</select>-->
+                <!--</td>>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><button type="submit">Submit</button></td>-->
+            <!--</tr>-->
+        <!--</table>-->
+    <!--</form>-->
+    <form id="newEmployeeForm" action="#" th:action="@{/employee/add}" th:object="${employee}" method="post">
+        <div class="form-group">
+            <label for="employeeName">Name</label>
+            <input type="text" class="form-control" id="employeeName" th:value="${employee?.name}">
+            <td th:if="${#values.hasErrors('name')}" th:errors="*{name}">Name errors</td>
+        </div>
+        <div class="form-group">
+            <label for="employeeSurname">Surname</label>
+            <input type="text" class="form-control" id="employeeSurname" >
+        </div>
+        <div class="form-group">
+            <label for="employeeSalary">Salary</label>
+            <input type="text" class="form-control" id="employeeSalary" >
+        </div>
+        <select id="bossSelector">
+        </select>
+        <select id="positionSelector">
+        </select>
+        <select id="teamSelector" multiple>
+        </select>
+
+        <button id="addEmployee" class="btn btn-primary">Add Employee</button>
+    </form>
+</div>
+</body>
+</html>

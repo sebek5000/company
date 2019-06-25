@@ -5,6 +5,8 @@ import com.company.browser.Repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(path="/team")
 public class TeamController {
@@ -19,7 +21,7 @@ public class TeamController {
     }
 
     @PostMapping(path="/add", consumes = "application/json", produces = "application/json")
-    public Team addNewTeam (@RequestBody Team team) {
+    public Team addNewTeam (@Valid @RequestBody Team team) {
 
         teamRepository.save(team);
         return team;
